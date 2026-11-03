@@ -8,6 +8,8 @@
 4. Configure runtime environment variables `ACCESS_ISSUER` (your exact `https://TEAM.cloudflareaccess.com` origin, without a trailing slash) and `ACCESS_AUD` (the Access application's audience tag). Do not use the test values from the tests. Authentication fails closed until both variables are set and the request has a valid Access JWT.
 5. Redeploy, sign in, and complete the acceptance checks below. A successful code upload alone does not verify the running application.
 
+The current release generates a Chinese cloud interface with `npm run build`. The cloud interface does not load the device-local preview adapter. Sharing requires a recipient email and a 1–30 day expiry. Only the verified recipient or owner may open it; the recipient must also pass the site's Access policy. Raw sharing tokens are returned once and are not retained in storage; save the link when creating it, or generate a replacement after refreshing.
+
 No Cloudflare token needs to be stored in the repository when using Cloudflare's native Git integration. Never commit `.dev.vars`, environment secrets, or uploaded lecture files. LLM integration is not configured in this version.
 
 ## Sharing

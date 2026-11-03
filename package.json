@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
+    "build": "node preview/build.mjs && node cloud-build.mjs",
+    "deploy": "npm run build && wrangler deploy",
     "test": "node --experimental-vm-modules check.mjs && node --test original.test.mjs"
   },
   "devDependencies": { "wrangler": "^4.0.0" }
