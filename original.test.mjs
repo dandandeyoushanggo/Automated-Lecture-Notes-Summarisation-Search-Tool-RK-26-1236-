@@ -1,0 +1,5 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {storeOriginal} from './worker/original.js';
+test('original bytes and content type are retained',async()=>{let saved;const bucket={put:async(...args)=>{saved=args}};const result=await storeOriginal(new Request('https://example.test',{method:'PUT',body:'%PDF-test'}),bucket,'private/file','PDF');assert.equal(result.status,200);assert.equal(new TextDecoder().decode(saved[1]),'%PDF-test');assert.equal(saved[2].httpMetadata.contentType,'application/pdf')});
+test('invalid PDF and oversized originals are rejected before saving',async()=>{let called=false;const bucket={put:async()=>{called=true}};assert.equal((await storeOriginal(new Request('https://example.test',{method:'PUT',body:'not a pdf'}),bucket,'file','PDF')).status,400);assert.equal((await storeOriginal(new Request('https://example.test',{method:'PUT',body:'text',headers:{'Content-Length':String(21*1024*1024)}}),bucket,'file','TXT')).status,413);assert.equal(called,false)});

@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lecture-notes-rk-26-1236",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-03",
+  "workers_dev": true,
+  "preview_urls": false,
+  "r2_buckets": [
+    { "binding": "BUCKET", "bucket_name": "lecture-notes-rk-26-1236" }
+  ]
+}

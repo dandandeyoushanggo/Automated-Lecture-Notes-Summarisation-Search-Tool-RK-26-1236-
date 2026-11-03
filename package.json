@@ -1,0 +1,11 @@
+{
+  "name": "lecture-notes-rk-26-1236",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --experimental-vm-modules check.mjs && node --test original.test.mjs"
+  },
+  "devDependencies": { "wrangler": "^4.0.0" }
+}
